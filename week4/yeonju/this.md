@@ -1,4 +1,4 @@
-정리된 노션 링크입니다: **https://boom-passbook-4e2.notion.site/this-e1c085b4c4db407c96dd543c567151d3**
+정리된 노션 링크입니다: https://boom-passbook-4e2.notion.site/this-e1c085b4c4db407c96dd543c567151d3
 
 # this
 
@@ -71,7 +71,11 @@ const foo = function () {
 	console.dir(this);
 };
 
-foo(); // 1번
+// 1번
+document.getElementById("btn").addEventListener("click", function(e){
+	let arr = [1,2,];
+	arr.forEach(foo()); 
+})
 
 const obj = {foo};
 obj.foo(); // 2번
@@ -89,7 +93,7 @@ foo.bind(bar); // 6번
 
 - 정답
     
-    [1] `foo`를 일반 함수로 호출하는 경우로 `foo` 함수 내부의 `this`는 전역 객체 `window`를 가리킨다. 그러므로 1번은 window가 출력된다.
+    [1] `foo`를 일반 함수로 호출하는 경우로 `foo` 함수 내부의 `this`는 전역 객체 `window`를 가리킨다. 그러므로 1번은 window가 2번 출력된다.
     
     [2] `foo`를 프로퍼티 값으로 할당하여 호출하므로 `foo` 함수 내부의 `this`는 메서드를 호출한 객체 `obj`를 가리킨다. 그러므로 2번은 obj가 출력된다.
     
@@ -104,6 +108,8 @@ foo.bind(bar); // 6번
 ## this
 
 ; 자신이 속한 객체 또는 자신이 생성할 인스턴스를 가리키는 `자기 참조 변수*self-reference variable*`
+
+; this는 자바스크립트 런타임 시에 바인딩이 이루어지는 실행 컨텍스트 중 하나
 
 - 코드 어디서든 참조 가능
 - 키워드로 분류되지만 식별자 역할을 한다.
@@ -333,6 +339,14 @@ console.log(getThisBinding.bind(thisArgs)); // getThisBinding
 console.log(getThisBinding.bind(thisArgs)()); // {a:1}
 ```
 
+### 5. eventListener
+
+- addEventListener가 부착된 html 요소, 즉 `e.currentTarget`과 같은 의미이다.
+
 # 참고 자료
 
 모던 자바스크립트 DeepDive
+
+[https://devowen.com/276#this는 JavaScript에서 어떻게 작동하는지 설명해주세요.-1](https://devowen.com/276#this%EB%8A%94%20JavaScript%EC%97%90%EC%84%9C%20%EC%96%B4%EB%96%BB%EA%B2%8C%20%EC%9E%91%EB%8F%99%ED%95%98%EB%8A%94%EC%A7%80%20%EC%84%A4%EB%AA%85%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94.-1)
+
+[https://manon-kim.tistory.com/entry/JS-this?category=1037367](https://manon-kim.tistory.com/entry/JS-this?category=1037367)
